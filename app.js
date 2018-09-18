@@ -70,7 +70,7 @@
                     <div class="product__wrapper">
                         <div class="product_count_wrapper">
                             <div class="stepper">
-                                <input class="product__count stepper-input" type="text" value="0">
+                                <input class="product__count stepper-input" type="number" value="0">
                                 <span class="stepper-arrow up"></span>
                                 <span class="stepper-arrow down"></span>                                            
                             </div>

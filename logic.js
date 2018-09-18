@@ -1,16 +1,35 @@
-window.onload = (function () {
-    const arrowUp = document.querySelectorAll('.up');
-    console.log(arrowUp);
-    const arrowDown = document.querySelector('.stepper-arrow down');
-    const productCount = document.querySelector('.stepper-input');
-    const counter = 0;
-    productCount.innerText = counter;
+window.onload = function () {
+    const mainBlock = document.querySelector('#products_section');
 
-    const plusCountHandler = (evt) => {
+
+    let counter = 0;
+    const counterGoodsPlus = () => {
         counter += 1;
-    }
-    arrowUp.forEach(element => {
-        element.addEventListener('click', plusCountHandler)
-    });;
+    };
 
-})();
+    const counterGoodsMinus = () => {
+        counter -= 1;
+    };
+
+
+    const countItemHandler = (evt) => {
+        const productCount = document.querySelector('.stepper-input');
+        evt.preventDefault();
+        let elem = evt.target;
+        console.log(elem);
+        if (elem.classList == 'stepper-arrow up') {
+            counterGoodsPlus();
+            productCount.value = counter;
+            console.log(productCount.value);
+        } else if (elem.classList == 'stepper-arrow down') {
+            counterGoodsMinus();
+            productCount.value = counter;
+        }
+
+        console.log(counter);
+        return;
+    };
+
+
+    document.body.addEventListener('click', countItemHandler)
+};
