@@ -4,7 +4,6 @@
         fetch('products.json')
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 let output = '';
                 data.forEach(function(post) {
                     output += `
