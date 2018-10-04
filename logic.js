@@ -1,22 +1,41 @@
-document.onload = (function () {
-    const stepper = document.querySelector('.stepper');
-    const productCount = document.querySelector('.stepper-input');
-    let counter = 0;
+(function () {
+    const CounterPlus = (total) => {
+        var count = 0;
+        return function () {
+            count++;
+            return count;
+        };
+    };
 
-    const addItems = function(evt){
-        var target = evt.target;
-        if(target.className === 'stepper-arrow down') {
-            if (counter > 0) {
-                counter--;
+    const CounterMinus = (total) => {
+        let count = 0;
+        return function () {
+            if (count > 0) {
+                count--;
             } else {
-                return false;
+                count = 0;
             }
-        } else if(target.className === 'stepper-arrow up') {
-            counter++;
+            return count;
+        };
+
+    };
+
+    document.body.addEventListener('change', function (evt) {
+
+        var target = evt.target;
+        const stepper = document.querySelector('.stepper');
+        const productCount = document.querySelectorAll('.stepper-input');
+
+        if (target.className === 'stepper-arrow up') {
+            const counterPlus = CounterPlus(productCount);
+
+            counterPlus();
+
+        } else if (target.className === 'stepper-arrow down') {
+
+            const counterMinus = CounterMinus(productCount);
+
+            counterMinus();
         }
-    }
-
-
-    document.body.addEventListener('click', addItems);
-
+    });
 })();
